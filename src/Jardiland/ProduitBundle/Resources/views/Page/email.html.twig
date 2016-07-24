@@ -1,0 +1,36 @@
+{% extends "::base.html.twig" %}
+
+{% block title %} {{ nom_du_site }} | contact {% endblock %}
+
+
+{% block body %} 
+
+
+
+
+
+
+
+<div class="main">
+	 	 <div class="contact">				
+                    
+                        <h2>Message envoyé avec succés</h2>
+                        <hr/>
+			
+                     <div class="row">
+                         <div class="col-custom ">
+                             <h3>Votre message a été envoyer avec succés</h3>
+                             <p>Toute l'équipe de Jardiland Sénégal, vous remercie. </p>
+                             <p>Vous serez contacter sou peu.</p>
+                         </div>
+                         <div class="col-custom ">
+                             <img class="img-responsive" src="{{asset('images/email_send.png')}}" alt="image de la message de confirmation">
+                         </div>
+                     </div>
+  			<div class="clear"></div>		
+                    </div>
+		</div>
+</div>
+</div>		
+
+{% endblock %}

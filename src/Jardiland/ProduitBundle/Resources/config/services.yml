@@ -1,0 +1,7 @@
+parameters:
+#    jardiland_produit.example.class: Jardiland\ProduitBundle\Example
+
+services:
+#    jardiland_produit.example:
+#        class: %jardiland_produit.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

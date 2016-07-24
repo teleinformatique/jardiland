@@ -1,0 +1,32 @@
+
+
+<!-- start main -->
+<div class="main_bg">
+<div class="wrap">	
+	<div class="main">
+		<!-- start grids_of_3 -->
+		<div class="grids_of_3">
+                    {% for produit in pagination %}
+			<div class="grid1_of_3">
+				<a href="{{ path('produit_voir',{'produit': produit.id}) }}">
+					<img class="img-custom-liste" src="{{ asset( produit.getWebPath ) }}" alt="{{ produit.nom }}"/>
+					<h3>{{ produit.nom }}</h3>
+					<div class="price">
+						<h4>{{ produit.prix }} FCFA<span>détail</span></h4>
+					</div>
+					<span class="b_btm"></span>
+				</a>
+			</div>
+                    {% else %}
+                        <h1>Aucun produit trouvé.</h1>
+                    {% endfor %}
+			
+			<div class="clear"></div>
+		</div>	
+		<!-- end grids_of_3 -->
+                <div class="pagination">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
+	</div>
+</div>
+</div>

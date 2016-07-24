@@ -1,0 +1,51 @@
+jardiland_produit_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: JardilandProduitBundle:Default:index }
+
+index:
+    pattern: /
+    defaults: { _controller: JardilandProduitBundle:Produit:index }
+
+produit_voir:
+    pattern: /produit/{produit}/voir-detail
+    defaults: { _controller: JardilandProduitBundle:Produit:voir }
+
+by_categorie:
+    pattern: /produits/catégorie/{categorie}
+    defaults: { _controller: JardilandProduitBundle:Produit:byCategorie }
+    
+recherche:
+    pattern: /produits/recherche
+    defaults: { _controller: JardilandProduitBundle:Produit:recherche }
+    requirements:
+        _method: POST
+
+contact:
+    pattern: /produits/message-envoye
+    defaults: { _controller: JardilandProduitBundle:Produit:contact }
+    requirements:
+        _method: POST
+    
+jardiland_contact:
+    path: /contact
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template:    'JardilandProduitBundle:Page:contact.html.twig'
+        maxAge: 86400
+        sharedMaxAge: 86400
+
+jardiland_apropos:
+    path: /a-propos
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template:    'JardilandProduitBundle:Page:apropos.html.twig'
+        maxAge: 86400
+        sharedMaxAge: 86400
+
+email_envoye:
+    path: /email-envoye
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template:    'JardilandProduitBundle:Page:email.html.twig'
+        maxAge: 86400
+        sharedMaxAge: 86400

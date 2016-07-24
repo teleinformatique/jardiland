@@ -1,0 +1,97 @@
+{% extends "::base.html.twig" %}
+
+{% block title %} {{ nom_du_site }} | détail produit {{ produit.nom }} {% endblock %}
+
+
+{% block body %} 
+
+
+
+<!-- start main -->
+<div class="main_bg">
+<div class="wrap">	
+	<div class="main">
+	<!-- start content -->
+	<div class="single">
+			<!-- start span1_of_1 -->
+			<div class="left_content">
+			<div class="span1_of_1">
+				<!-- start product_slider -->
+				<div class="product-view">
+				    <div class="product-essential">
+				        <div class="product-img-box">
+				   
+				    <div class="product-image"> 
+				        
+				           	<img class="img-detail" src="{{ asset( produit.getWebPath ) }}" alt="{{  produit.nom }}" title="{{  produit.nom }}" />
+				        </a>
+				   </div>
+					
+				</div>
+				</div>
+				</div>
+				<!-- end product_slider -->
+			</div>
+			<!-- start span1_of_1 -->
+			<div class="span1_of_1_des">
+				  <div class="desc1">
+					<h3>{{ produit.nom}} </h3>
+					<p>
+                                            {{produit.description | raw}}.
+                                        </p>
+					<h5>Prix : {{ produit.prix}} FCFA</h5>
+					<div class="available">
+						<h4>Marque : {{ produit.marque}}</h4>
+						
+                                                    
+						
+						
+						
+						<div class="clear"></div>
+					</div>
+					<div class="share-desc">
+						<div class="share">
+							<h4>Partager le produit </h4>
+						<!-- AddThis Button BEGIN -->
+                <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+                <a class="addthis_button_preferred_1"></a>
+                <a class="addthis_button_preferred_2"></a>
+                <a class="addthis_button_preferred_3"></a>
+                <a class="addthis_button_preferred_4"></a>
+                <a class="addthis_button_compact"></a>
+                <a class="addthis_counter addthis_bubble_style"></a>
+                </div>
+                <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+                <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5376083f3775f4c9"></script>
+                <!-- AddThis Button END -->
+						</div>
+						<div class="clear"></div>
+					</div>
+			   	 </div>
+			   	</div>
+			   	<div class="clear"></div>
+			   	
+			   	</div>
+			   	<!-- start sidebar -->
+			 <div class="left_sidebar">
+					<div class="sellers">
+						<h4>Produits de la même categorie</h4>
+						<div class="single-nav">
+			                <ul>
+                                            {% for produit in produits %}
+			                   <li><a href="{{ path('produit_voir',{'produit': produit.id}) }}">{{produit.nom}}</a></li>
+                                           {% endfor %}
+			                </ul>
+			              </div>
+						
+					</div>
+				</div>
+					<!-- end sidebar -->
+          	    <div class="clear"></div>
+	       </div>	
+	<!-- end content -->
+	</div>
+</div>
+</div>
+
+{% endblock %}

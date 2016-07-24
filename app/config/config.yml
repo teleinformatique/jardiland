@@ -1,0 +1,198 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: @JardilandProduitBundle/Resources/config/admin.yml }
+
+framework:
+    #esi:             ~
+    translator:      { fallback: "%locale%" }
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+        #assets_version: SomeVersionScheme
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        # handler_id set to null will use default session handler from php.ini
+        handler_id:  ~
+    fragments:       ~
+    http_method_override: true
+
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+    globals:
+        nom_du_site: "Jardiland"
+
+# Assetic Configuration
+# Assetic Configuration
+assetic:
+    debug:          %kernel.debug%
+    use_controller: false
+    bundles:        [ ]
+    java: /usr/bin/java
+    filters:
+        cssrewrite: ~
+        cssembed:
+          jar: %kernel.root_dir%/Resources/java/cssembed-0.4.5.jar
+        yui_js:
+          jar: %kernel.root_dir%/Resources/java/yuicompressor.jar
+        lessphp:
+          file: %kernel.root_dir%/../vendor/leafo/lessphp/lessc.inc.php
+          apply_to: "\.less$"
+    assets:
+        jquery_js:
+            inputs:
+                - '%kernel.root_dir%/../components/jquery/jquery.min.js'
+            filters: [?yui_js]
+        bootstrap_js:
+            inputs:
+                - '%kernel.root_dir%/../vendor/twitter/bootstrap/js/transition.js'
+                - '%kernel.root_dir%/../vendor/twitter/bootstrap/js/alert.js'
+                - '%kernel.root_dir%/../vendor/twitter/bootstrap/js/modal.js'
+                - '%kernel.root_dir%/../vendor/twitter/bootstrap/js/dropdown.js'
+                - '%kernel.root_dir%/../vendor/twitter/bootstrap/js/scrollspy.js'
+                - '%kernel.root_dir%/../vendor/twitter/bootstrap/js/tab.js'
+                - '%kernel.root_dir%/../vendor/twitter/bootstrap/js/tooltip.js'
+                - '%kernel.root_dir%/../vendor/twitter/bootstrap/js/popover.js'
+                - '%kernel.root_dir%/../vendor/twitter/bootstrap/js/button.js'
+                - '%kernel.root_dir%/../vendor/twitter/bootstrap/js/collapse.js'
+                - '%kernel.root_dir%/../vendor/twitter/bootstrap/js/carousel.js'
+                - '%kernel.root_dir%/../vendor/twitter/bootstrap/js/affix.js'
+            filters: [?yui_js]
+        bootstrap_less:
+            inputs:
+                - '%kernel.root_dir%/../vendor/twitter/bootstrap/less/bootstrap.less'
+            filters: [lessphp,cssembed]
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   "%database_driver%"
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
+        charset:  UTF8
+        # if using pdo_sqlite as your database driver, add the path in parameters.yml
+        # e.g. database_path: "%kernel.root_dir%/data/data.db3"
+        # path:     "%database_path%"
+        types:
+            json: Sonata\Doctrine\Types\JsonType
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        entity_managers:
+            default:
+                auto_mapping: true
+                mappings:
+                     ApplicationSonataUserBundle: ~
+                     
+sonata_user:
+    security_acl:     false
+    class:
+        user:         Jardiland\ProduitBundle\Entity\User
+    admin:                  # Admin Classes
+        user:
+            class:          Sonata\UserBundle\Admin\Entity\UserAdmin
+            controller:     SonataAdminBundle:CRUD
+            translation:    SonataUserBundle
+
+        group:
+            class:          Sonata\UserBundle\Admin\Entity\GroupAdmin
+            controller:     SonataAdminBundle:CRUD
+            translation:    SonataUserBundle
+    profile:  # Profile Form (firstname, lastname, etc ...)
+        form:
+            type:               sonata_user_profile
+            handler:            sonata.user.profile.form.handler.default
+            name:               sonata_user_profile_form
+            validation_groups:  [Profile]
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
+    spool:     { type: memory }
+    
+    
+#sonata admin
+#SonataAdminBundle
+sonata_admin:
+    title: Administration
+    title_logo: bundles/jardilandproduit/img/fancy_acme_logo.png
+    templates:
+        ## default global templates
+        layout:  SonataAdminBundle::standard_layout.html.twig
+        ajax:    SonataAdminBundle::ajax_layout.html.twig
+ 
+        ## default actions templates, should extend a global templates
+        list:    SonataAdminBundle:CRUD:list.html.twig
+        show:    SonataAdminBundle:CRUD:show.html.twig
+        edit:    JardilandProduitBundle:CRUD:edit.html.twig
+        history: SonataAdminBundle:CRUD:history.html.twig
+        preview: SonataAdminBundle:CRUD:preview.html.twig
+        delete:  SonataAdminBundle:CRUD:delete.html.twig
+    security:
+        handler: sonata.admin.security.handler.role
+        
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        # Enable the SonataAdminBundle block
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+
+    
+
+
+#StofDoctrineExtensionsBundle
+stof_doctrine_extensions:
+    default_locale: en_US
+    orm:
+        default:
+            sluggable: true
+            
+
+#KnpPagiantorBundle
+knp_paginator:
+    page_range: 10                      # default page range used in pagination control
+    default_options:
+        page_name: page                # page query parameter name
+        sort_field_name: sort          # sort field query parameter name
+        sort_direction_name: direction # sort direction query parameter name
+        distinct: true                 # ensure distinct results, useful when ORM queries are using GROUP BY statements
+    template:
+        pagination: JardilandProduitBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig     # sliding pagination controls template
+        sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
+
+        
+#FOS UserBundle
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: Jardiland\ProduitBundle\Entity\User
+    profile:  # Authentication Form
+        form:
+            type:               fos_user_profile
+            #handler:            fos_user.profile.form.handler.default
+            name:               fos_user_profile_form
+            #validation_groups:  [Authentication] # Please note : this is not the default value
+    group:
+      group_class: Application\Sonata\UserBundle\Entity\Group
+
+
+
+
+
+        

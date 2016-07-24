@@ -1,0 +1,21 @@
+{% extends '::base.html.twig' %}
+
+{% block title %} {{ nom_du_site }} | produits de la {{categorie}} {% endblock %}
+{% block body %}
+
+<!----start-cursual---->
+<div class="wrap accueil_space">
+
+</div>
+<!-- start main1 -->
+<div class="main_bg1">
+<div class="wrap">	
+	<div class="main1">
+		<h2>Les produits de la catégorie : {{ categorie }}</h2>
+	</div>
+</div>
+</div>
+
+         {% include 'JardilandProduitBundle:Produit:liste.html.twig' with {'pagination':pagination } %}
+
+{% endblock %}

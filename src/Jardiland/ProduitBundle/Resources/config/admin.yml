@@ -1,0 +1,23 @@
+services:
+    sonata.admin.produit:
+        class: Jardiland\ProduitBundle\Admin\ProduitAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Produit" }
+        arguments:
+            - ~
+            - Jardiland\ProduitBundle\Entity\Produit
+            - ~
+        calls:
+            - [ setTranslationDomain, [JardilandProduitBundle]]
+            
+    
+    sonata.admin.categorie:
+        class: Jardiland\ProduitBundle\Admin\CategorieAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Catégorie des produits" }
+        arguments:
+            - ~
+            - Jardiland\ProduitBundle\Entity\Categorie
+            - ~
+        calls:
+            - [ setTranslationDomain, [JardilandProduitBundle]]

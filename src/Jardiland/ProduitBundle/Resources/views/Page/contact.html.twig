@@ -1,0 +1,52 @@
+{% extends "::base.html.twig" %}
+
+{% block title %} {{ nom_du_site }} | contact {% endblock %}
+
+
+{% block body %} 
+
+
+
+
+
+
+
+<div class="main">
+	 	 <div class="contact">				
+					<div class="contact_info">
+						<h2>Nous localisez</h2>
+			    	 		<div class="map">
+					   			<iframe src="https://www.google.com/maps/embed?pb=!1m25!1m12!1m3!1d877.9330943240099!2d-17.133020467636847!3d14.747378832161473!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m10!1i0!3e6!4m3!3m2!1d14.747266!2d-17.132548399999997!4m3!3m2!1d14.7472634!2d-17.1325538!5e1!3m2!1sfr!2ssn!4v1401737784232" width="600" height="450" frameborder="0" style="border:0"></iframe>
+					   		</div>
+      				</div>
+				  <div class="contact-form">
+			 	  	 	<h2>Nous contactez</h2>
+			 	 	    <form method="post" action="{{path('contact')}}">
+					    	<div>
+						    	<span><label>Nom</label></span>
+						    	<span><input name="nom" type="text" class="textbox"></span>
+						    </div>
+						    <div>
+						    	<span><label>E-mail</label></span>
+						    	<span><input name="email" type="text" class="textbox"></span>
+						    </div>
+						    <div>
+						     	<span><label>Téléphone</label></span>
+						    	<span><input name="telephone" type="text" class="textbox"></span>
+						    </div>
+						    <div>
+						    	<span><label>Message</label></span>
+						    	<span><textarea name="message"> </textarea></span>
+						    </div>
+						   <div>
+						   		<span><input type="submit" class="" value="Envoyer"></span>
+						  </div>
+					    </form>
+				    </div>
+  				<div class="clear"></div>		
+			  </div>
+		</div>
+</div>
+</div>		
+
+{% endblock %}

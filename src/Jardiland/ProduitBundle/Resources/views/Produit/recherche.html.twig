@@ -1,0 +1,21 @@
+{% extends '::base.html.twig' %}
+
+{% block title %} {{ nom_du_site }} | recherche {% endblock %}
+{% block body %}
+
+<!----start-cursual---->
+<div class="wrap accueil_space">
+
+</div>
+<!-- start main1 -->
+<div class="main_bg1">
+<div class="wrap">	
+	<div class="main1">
+		<h2>Résultat de la recherche avec le(s) terme(s) "{{termes}}"</h2>
+	</div>
+</div>
+</div>
+
+                {% include 'JardilandProduitBundle:Produit:liste.html.twig' with {'pagination':pagination } %}
+
+{% endblock %}

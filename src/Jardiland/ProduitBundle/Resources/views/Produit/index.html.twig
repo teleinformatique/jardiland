@@ -1,0 +1,85 @@
+{% extends '::base.html.twig' %}
+
+
+{% block title %} {{ nom_du_site }} | accueil {% endblock %}
+{% block body %}
+<!-- start slider -->
+			<div id="da-slider" class="da-slider">
+				<div class="da-slide">
+					<h2>Bienvenue à Jardiland-SN</h2>
+					<p class="test">
+                                            Jardiland-sn  est une société commerciale qui vous propose un large choix de motopompes, 
+                                            de pompes électriques, de groupes électrogènes et tout matériel pour  arrosage et  jardinage.
+                                        </p>
+					
+					<div class="da-img"><img src="{{ asset('images/slider1.jpg') }}" alt="image01" /></div>
+				</div>
+				<div class="da-slide">
+					<h2>Bienvenue à Jardiland-SN</h2>
+					<p class="test">
+                                            Jardiland-sn  est une société commerciale qui vous propose un large choix de motopompes, 
+                                            de pompes électriques, de groupes électrogènes et tout matériel pour  arrosage et  jardinage.
+                                        </p>
+					<div class="da-img"><img src="{{ asset('images/slider2.jpg') }}" alt="image01" /></div>
+				</div>
+				<div class="da-slide">
+					<h2>Bienvenue à Jardiland-SN</h2>
+					<p class="test">
+                                            Jardiland-sn  est une société commerciale qui vous propose un large choix de motopompes, 
+                                            de pompes électriques, de groupes électrogènes et tout matériel pour  arrosage et  jardinage.
+                                        </p>
+					<div class="da-img"><img src="{{ asset('images/slider3.jpg') }}" alt="image01" /></div>
+				</div>
+				<div class="da-slide">
+					<h2>Bienvenue à Jardiland-SN</h2>
+					<p class="test">
+                                            Jardiland-sn  est une société commerciale qui vous propose un large choix de motopompes, 
+                                            de pompes électriques, de groupes électrogènes et tout matériel pour  arrosage et  jardinage.
+                                        </p><!--a href="details.html" class="da-link">shop now</a-->
+					<div class="da-img"><img src="{{ asset('images/slider4.png') }}" alt="image01" /></div>
+				</div>
+				<nav class="da-arrows">
+					<span class="da-arrows-prev"></span>
+					<span class="da-arrows-next"></span>
+				</nav>
+			</div>
+      
+<!----start-cursual---->
+<div class="wrap accueil_space">
+
+</div>
+<!-- start main1 -->
+<div class="main_bg1">
+<div class="wrap">	
+	<div class="main1">
+		<h2>Nos nouveaux produits</h2>
+	</div>
+</div>
+</div>
+<!-- start main -->
+<div class="main_bg">
+<div class="wrap">	
+	<div class="main">
+		<!-- start grids_of_3 -->
+		<div class="grids_of_3">
+                    {% for produit in produits %}
+			<div class="grid1_of_3">
+				<a href="{{ path('produit_voir',{'produit': produit.id}) }}">
+					<img class="img-custom-liste" src="{{ asset( produit.getWebPath ) }}" alt="{{ produit.nom }}"/>
+					<h3>{{ produit.nom }}</h3>
+					<div class="price">
+						<h4>{{ produit.prix }} FCFA<span>détail</span></h4>
+					</div>
+					<span class="b_btm"></span>
+				</a>
+			</div>
+                    {% endfor %}
+			
+			<div class="clear"></div>
+		</div>	
+		<!-- end grids_of_3 -->
+	</div>
+</div>
+</div>	
+
+{% endblock %}
